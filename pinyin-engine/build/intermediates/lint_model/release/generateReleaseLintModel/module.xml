@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="E:\EchoContext\echo\pinyin-engine"
+    name=":pinyin-engine"
+    type="LIBRARY"
+    maven="EchoKeyboard:pinyin-engine:unspecified"
+    agpVersion="8.5.1"
+    buildFolder="build"
+    bootClassPath="E:\android_sdk\platforms\android-36\android.jar;E:\android_sdk\build-tools\34.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-36"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

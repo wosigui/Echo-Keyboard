@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Echo Keyboard</string>
+    <string name="subtype_name">Chinese / English</string>
+    <string name="title">Echo Keyboard</string>
+    <string name="intro">Full Pinyin, T9 and English. Powered by the offline Android Pinyin engine.</string>
+    <string name="enable">1. Enable Echo Keyboard</string>
+    <string name="choose">2. Choose keyboard</string>
+    <string name="ready">Echo is ready</string>
+    <string name="pending">Echo is not enabled. Tap step 1 and turn on Echo Keyboard in system settings.</string>
+    <string name="enabled_not_selected">Echo is enabled. Tap step 2 to select it.</string>
+    <string name="enable_required">The keyboard picker only lists enabled keyboards. Open system keyboard settings and turn on Echo Keyboard, then return here to select it.</string>
+    <string name="open_keyboard_settings">Open keyboard settings</string>
+    <string name="try_hint">Try typing here…</string>
+    <string name="language">中文 / EN</string>
+    <string name="space">Space</string>
+    <string name="enter">Enter</string>
+    <string name="privacy">No network permission. No typing history is stored.</string>
+    <string name="pinyin_hint">拼音 · 输入后点选候选字</string>
+    <string name="english_hint">English</string>
+    <string name="switch_ime">Switch input method</string>
+<string name="setup_title">Your keyboard, two steps away</string><string name="playground_title">A little space to try</string>
+    <string name="layout_nine">9-key</string><string name="layout_full">ABC</string>
+    <string name="nine_hint">T9 Pinyin · tap 2–9</string><string name="engine_loading">Loading dictionary…</string>
+    <string name="action_search">Search</string><string name="action_go">Go</string><string name="action_next">Next</string><string name="action_done">Done</string><string name="action_send">Send</string>
+</resources>

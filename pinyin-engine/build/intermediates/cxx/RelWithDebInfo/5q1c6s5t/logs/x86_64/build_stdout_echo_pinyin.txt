@@ -1,0 +1,2 @@
+ninja: Entering directory `E:\EchoContext\echo\pinyin-engine\.cxx\RelWithDebInfo\5q1c6s5t\x86_64'
+ninja: no work to do.

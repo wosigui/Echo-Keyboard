@@ -1,0 +1,7 @@
+app.echo.pinyin.pinyin-engine-pngs-0 E:\EchoContext\echo\pinyin-engine\build\generated\res\pngs\release
+app.echo.pinyin.pinyin-engine-resValues-1 E:\EchoContext\echo\pinyin-engine\build\generated\res\resValues\release
+app.echo.pinyin.pinyin-engine-mergeReleaseResources-2 E:\EchoContext\echo\pinyin-engine\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+app.echo.pinyin.pinyin-engine-mergeReleaseResources-3 E:\EchoContext\echo\pinyin-engine\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+app.echo.pinyin.pinyin-engine-release-4 E:\EchoContext\echo\pinyin-engine\build\intermediates\merged_res\release\mergeReleaseResources
+app.echo.pinyin.pinyin-engine-main-5 E:\EchoContext\echo\pinyin-engine\src\main\res
+app.echo.pinyin.pinyin-engine-release-6 E:\EchoContext\echo\pinyin-engine\src\release\res

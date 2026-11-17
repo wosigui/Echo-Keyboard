@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Echo 输入法</string>
+    <string name="subtype_name">中文 / 英文</string>
+    <string name="title">顺手，才是好输入。</string>
+    <string name="intro">全键拼音、九宫格与英文，随时切换。内置 Android 离线拼音引擎。</string>
+    <string name="enable">1. 启用 Echo 输入法</string>
+    <string name="choose">2. 选择输入法</string>
+    <string name="ready">Echo 已准备就绪</string>
+    <string name="pending">Echo 尚未启用。请点第 1 步，在系统设置中打开 Echo 输入法开关。</string>
+    <string name="enabled_not_selected">Echo 已启用，请点第 2 步选择 Echo 输入法。</string>
+    <string name="enable_required">选择列表只显示已启用的输入法。请先进入系统输入法设置，打开 Echo 输入法开关，然后返回此处选择。</string>
+    <string name="open_keyboard_settings">打开输入法设置</string>
+    <string name="try_hint">在这里试试输入…</string>
+    <string name="language">中文 / EN</string>
+    <string name="space">空格</string>
+    <string name="enter">回车</string>
+    <string name="privacy">无需联网权限，不保存输入历史。</string>
+    <string name="pinyin_hint">拼音 · 输入后点选候选字</string>
+    <string name="english_hint">英文</string>
+    <string name="switch_ime">切换输入法</string>
+<string name="setup_title">两步，开始轻松输入</string><string name="playground_title">写下第一句话</string>
+    <string name="layout_nine">九键</string><string name="layout_full">全键</string>
+    <string name="nine_hint">九键拼音 · 点按 2–9 输入</string><string name="engine_loading">正在加载词库…</string>
+    <string name="action_search">搜索</string><string name="action_go">前往</string><string name="action_next">下一项</string><string name="action_done">完成</string><string name="action_send">发送</string>
+</resources>

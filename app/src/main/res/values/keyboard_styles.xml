@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Echo.Voice" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="KeyboardTool"><item name="android:layout_width">0dp</item><item name="android:layout_height">44dp</item><item name="android:layout_weight">1</item><item name="android:clickable">true</item><item name="android:focusable">true</item><item name="android:background">@drawable/candidate_background</item></style>
+</resources>
