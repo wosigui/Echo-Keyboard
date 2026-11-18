@@ -31,8 +31,8 @@ class KeyboardPanelsTest {
         val panels = KeyboardPanels(context,binding,{}, {}, { selectedLayout=it }, {}, { false }, { selected=it }, {})
         panels.layouts()
         assertEquals(View.GONE,binding.keyboard.visibility)
-        assertNotNull(text(binding.panel,context.getString(R.string.layout_full_title)))
-        text(binding.panel,context.getString(R.string.layout_full_title))!!.performClick()
+        assertNotNull(text(binding.panel,"26键拼音"))
+        text(binding.panel,"26键拼音")!!.performClick()
         assertEquals("full",selectedLayout)
         assertEquals(View.VISIBLE,binding.keyboard.visibility)
         val entry = PinyinCandidate("你",2,"nihao")
@@ -46,8 +46,8 @@ class KeyboardPanelsTest {
         var spelling: String? = null
         val panels = KeyboardPanels(context,binding,{ committed=it }, {}, {}, {}, { false }, {}, { spelling=it })
         panels.symbols()
-        text(binding.panel,"，")!!.performClick()
-        assertEquals("，",committed)
+        text(binding.panel,"!")!!.performClick()
+        assertEquals("!",committed)
         assertEquals("symbols",panels.current)
         panels.emoji()
         text(binding.panel,"😀")!!.performClick()
@@ -57,6 +57,39 @@ class KeyboardPanelsTest {
         assertEquals("nihao",spelling)
         assertNull(panels.current)
     }
+    @Test fun referencePanelsRouteKeysAndRestoreToolbar() = onUi { context,binding ->
+        var committed=""
+        var pressed=0
+        val panels=KeyboardPanels(context,binding,{ committed=it }, { pressed=it }, {}, {}, { false }, {}, {})
+        fun capture(name:String) {
+            val width=context.resources.displayMetrics.widthPixels
+            binding.root.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+            binding.root.layout(0,0,width,binding.root.measuredHeight)
+            val bitmap=android.graphics.Bitmap.createBitmap(width,binding.root.height,android.graphics.Bitmap.Config.ARGB_8888)
+            binding.root.draw(android.graphics.Canvas(bitmap))
+            java.io.File(context.getExternalFilesDir(null),"$name.png").outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,it) }
+            bitmap.recycle()
+        }
+        panels.layouts(); capture("reference-layouts")
+        panels.numbers("发送"); capture("reference-numbers")
+        assertEquals(View.VISIBLE,binding.toolbar.visibility)
+        text(binding.panel,"8")!!.performClick()
+        assertEquals("8",committed)
+        text(binding.panel,"⌫")!!.performClick()
+        assertEquals(-5,pressed)
+        text(binding.panel,"发送")!!.performClick()
+        assertEquals(10,pressed)
+        text(binding.panel,"符")!!.performClick()
+        assertEquals("symbols",panels.current)
+        capture("reference-symbols")
+        assertEquals(View.GONE,binding.toolbar.visibility)
+        text(binding.panel,"网络")!!.performClick()
+        text(binding.panel,"https://")!!.performClick()
+        assertEquals("https://",committed)
+        assertNull(panels.current)
+        assertEquals(View.VISIBLE,binding.toolbar.visibility)
+    }
+
     @Test fun sensitiveFieldDisablesClipboardAndEditorSelectionWorks() = onUi { context,binding ->
         var key = 0
         var edit = 0

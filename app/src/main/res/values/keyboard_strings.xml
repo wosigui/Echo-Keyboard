@@ -11,8 +11,8 @@
   <string name="back_keyboard">Keyboard</string>
   <string name="symbols_title">Symbols</string>
   <string name="numbers_title">Numbers</string>
-  <string name="layout_nine_title">Pinyin T9</string>
-  <string name="layout_full_title">Pinyin QWERTY</string>
+  <string name="layout_nine_title">9键拼音</string>
+  <string name="layout_full_title">26键拼音</string>
   <string name="english_title">English QWERTY</string>
   <string name="clipboard_empty">Copy some text to paste it here</string>
   <string name="clipboard_sensitive">Clipboard is unavailable in this field</string>

@@ -12,7 +12,7 @@ class KeyboardIconView @JvmOverloads constructor(context: Context, attrs: Attrib
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val size = 22 * resources.displayMetrics.density
+        val size = (if(tag=="keyboard_box" || tag=="clipboard") 68f else 52f) * resources.displayMetrics.widthPixels/1080f
         canvas.save()
         canvas.translate((width - size) / 2, (height - size) / 2)
         canvas.scale(size / 24, size / 24)
@@ -34,6 +34,11 @@ internal object KeyboardGlyph {
             c.drawPath(path, p)
         }
         when (kind) {
+            "lock", "unlock" -> {
+                c.drawRoundRect(4f,10f,20f,23f,2f,2f,p)
+                if(kind=="lock") { c.drawArc(7f,1f,17f,13f,180f,180f,false,p);line(7f,7f,7f,10f);line(17f,7f,17f,10f) }
+                else { c.drawArc(7f,0f,18f,12f,180f,160f,false,p);line(7f,6f,7f,10f) }
+            }
             "grid" -> for (x in listOf(3f, 14f)) for (y in listOf(3f, 14f)) c.drawRoundRect(x,y,x+7,y+7,1.8f,1.8f,p)
             "keyboard", "keyboard_box" -> {
                 if (kind == "keyboard_box") c.drawRoundRect(1f,2f,23f,22f,4f,4f,p)
@@ -45,6 +50,7 @@ internal object KeyboardGlyph {
             "edit" -> { line(9f,3f,15f,3f); line(12f,3f,12f,21f); line(9f,21f,15f,21f); line(5f,8f,2f,12f,5f,16f); line(19f,8f,22f,12f,19f,16f) }
             "mic" -> { c.drawRoundRect(8f,2f,16f,16f,4f,4f,p); c.drawArc(5f,6f,19f,20f,0f,180f,false,p); line(12f,20f,12f,23f) }
             "down" -> line(4f,9f,12f,17f,20f,9f)
+            "right" -> line(8f,3f,17f,12f,8f,21f)
             "up" -> line(4f,15f,12f,7f,20f,15f)
             "shift" -> line(4f,12f,12f,3f,20f,12f,15f,12f,15f,22f,9f,22f,9f,12f,4f,12f)
             "delete" -> { line(9f,5f,21f,5f,23f,8f,23f,17f,21f,20f,9f,20f,2f,12f,9f,5f); line(13f,9f,18f,16f); line(18f,9f,13f,16f) }

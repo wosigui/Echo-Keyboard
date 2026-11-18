@@ -88,7 +88,7 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
         val view=InputViewBinding.inflate(layoutInflater);binding=view
         ViewCompat.setOnApplyWindowInsetsListener(view.root) { root,insets ->
             val bars=insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            root.setPadding(bars.left,0,bars.right,dp(6)+bars.bottom);insets
+            root.setPadding(bars.left,0,bars.right,maxOf(bars.bottom,(44f*resources.displayMetrics.widthPixels/1080f).toInt()));insets
         }
         view.keyboard.setOnKeyboardActionListener(this)
         view.keyboard.isPreviewEnabled=false
@@ -149,9 +149,20 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
         view.keyboardContent.layoutParams=FrameLayout.LayoutParams(if(oneHand==0)-1 else contentWidth,-2,if(oneHand==2)Gravity.RIGHT else Gravity.LEFT)
         view.oneHandRestore.visibility=if(oneHand==0)View.GONE else View.VISIBLE
         view.oneHandRestore.layoutParams=FrameLayout.LayoutParams(dp(40),dp(56),(if(oneHand==2)Gravity.LEFT else Gravity.RIGHT) or Gravity.CENTER_VERTICAL)
+        val unit=contentWidth/1080f
+        fun referenceHeight(target: View, pixels: Int) { target.layoutParams=target.layoutParams.apply { height=(pixels*unit).toInt() } }
+        referenceHeight(view.toolbar,121)
+        referenceHeight(view.candidateBar,121)
+        referenceHeight(view.bottomControls,112)
+        view.bottomControls.setPadding((64*unit).toInt(),0,(64*unit).toInt(),0)
+        listOf(view.systemKeyboard,view.clipboard).forEach {
+            it.layoutParams=it.layoutParams.apply { width=(136*unit).toInt();height=(100*unit).toInt() }
+        }
+        referenceHeight(view.expand,121)
+        view.expand.tag="right"
         val rowHeight=preferences.getInt("row_height",52).coerceIn(40,68)
         view.panel.layoutParams=view.panel.layoutParams.apply { height=dp(rowHeight*4) }
-        view.keyboard.keyboard=SizedKeyboard(this,when { numbers -> R.xml.numbers;useT9() -> R.xml.nine_key;else -> R.xml.letters },(contentWidth-view.keyboard.paddingLeft-view.keyboard.paddingRight).coerceAtLeast(1),rowHeight)
+        view.keyboard.keyboard=SizedKeyboard(this,when { numbers -> R.xml.numbers;useT9() -> R.xml.nine_key;else -> R.xml.letters },(contentWidth-view.keyboard.paddingLeft-view.keyboard.paddingRight).coerceAtLeast(1),rowHeight,contentWidth)
         view.keyboard.isShifted=shifted
         view.keyboard.showLowerCase=!chinese && !shifted
         view.keyboard.keyBubbleEnabled=preferences.getBoolean("preview",true) && !sensitive
@@ -167,6 +178,7 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
         view.voice.alpha=if(view.voice.isEnabled)1f else .35f
         view.layoutToggle.isEnabled=!numeric && !sensitive
         showCandidates()
+        if(numbers) panels?.numbers(label.toString())
     }
     private fun refreshCandidates() {
         val ticket=++generation
@@ -185,9 +197,12 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
     private fun showCandidates(updateCandidateItems:Boolean=true) {
         val view=binding ?: return
         view.composition.text=if(useT9() && t9.prefix.isNotEmpty()) t9.prefix+composer.text.drop(t9.lockedDigits) else composer.text
-        view.composition.visibility=if(composer.text.isEmpty())View.INVISIBLE else View.VISIBLE
+        view.composition.visibility=View.GONE
+        view.keyboard.compositionText=composer.text
+        view.keyboard.segmentation=chinese && composer.text.isNotEmpty()
+        view.keyboard.invalidate()
         val hasInput=composer.text.isNotEmpty() || candidates.isNotEmpty()
-        view.toolbar.visibility=if(hasInput)View.GONE else View.VISIBLE
+        view.toolbar.visibility=if(hasInput || panels?.current in setOf("symbols","layouts"))View.GONE else View.VISIBLE
         view.candidateBar.visibility=if(hasInput)View.VISIBLE else View.GONE
         view.expand.isEnabled=candidates.isNotEmpty()
         val ticket=generation
@@ -197,7 +212,7 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
                 candidateView(composer.text).apply { textSize=14f;setOnClickListener { if(ticket==generation)flush() };view.candidates.addView(this) }
             } else candidates.forEachIndexed { index,entry ->
                 candidateView(entry.text).apply {
-                    if(index==0)setTextColor(0xFF8FBDF5.toInt())
+                    if(index==0)setTextColor(0xFF387BDA.toInt())
                     if(entry.corrected)contentDescription=getString(R.string.correction_label,entry.spelling)+": "+entry.text
                     setOnClickListener { if(ticket==generation)select(entry) };view.candidates.addView(this)
                 }
@@ -215,7 +230,7 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
         if(emojiSearch!=null)renderEmojiSearch()
     }
     private fun candidateView(text:String)=TextView(this).apply {
-        this.text=text;textSize=21f;gravity=Gravity.CENTER;setTextColor(getColor(R.color.keyboard_text));setPadding(dp(14),0,dp(14),0)
+        this.text=text;setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX,54f*resources.displayMetrics.widthPixels/1080f);gravity=Gravity.CENTER;setTextColor(getColor(R.color.keyboard_text));setPadding(dp(14),0,dp(14),0)
         layoutParams=LinearLayout.LayoutParams(-2,-1);minWidth=dp(44);isClickable=true;isFocusable=true;background=getDrawable(R.drawable.candidate_background)
     }
     private fun syllableOptions()=t9.choices(composer.text,syllables).sortedByDescending { syllable -> candidates.count { it.spelling.replace("'","").drop(t9.lockedDigits).startsWith(syllable) } }
@@ -395,7 +410,7 @@ class EchoInputMethodService : InputMethodService(), KeyboardView.OnKeyboardActi
         super.onUpdateSelection(oldSelStart,oldSelEnd,newSelStart,newSelEnd,candidatesStart,candidatesEnd)
         if(emojiSearch==null && composer.text.isNotEmpty() && (newSelStart!=candidatesEnd || newSelEnd!=candidatesEnd)) { cancelPending();clearComposition();currentInputConnection?.finishComposingText();showCandidates() }
     }
-    override fun onFinishInput() { cancelPending();connection()?.finishComposingText();endEmojiSearch();clearComposition();previousWord="";super.onFinishInput() }
+    override fun onFinishInput() { binding?.keyboard?.compositionText=""; cancelPending();connection()?.finishComposingText();endEmojiSearch();clearComposition();previousWord="";super.onFinishInput() }
     override fun onDestroy() {
         destroyed=true;cancelPending();VoiceInputResult.listener=null
         getSystemService(ClipboardManager::class.java).removePrimaryClipChangedListener(clipboardListener)

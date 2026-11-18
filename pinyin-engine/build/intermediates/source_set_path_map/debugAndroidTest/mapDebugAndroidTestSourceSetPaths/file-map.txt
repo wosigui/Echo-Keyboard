@@ -1,0 +1,5 @@
+app.echo.pinyin.test.pinyin-engine-androidTest-0 E:\EchoContext\echo\pinyin-engine\build\generated\res\resValues\androidTest\debug
+app.echo.pinyin.test.pinyin-engine-mergeDebugAndroidTestResources-1 E:\EchoContext\echo\pinyin-engine\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+app.echo.pinyin.test.pinyin-engine-mergeDebugAndroidTestResources-2 E:\EchoContext\echo\pinyin-engine\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+app.echo.pinyin.test.pinyin-engine-debugAndroidTest-3 E:\EchoContext\echo\pinyin-engine\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+app.echo.pinyin.test.pinyin-engine-debug-4 E:\EchoContext\echo\pinyin-engine\build\intermediates\packaged_res\debug\packageDebugResources
