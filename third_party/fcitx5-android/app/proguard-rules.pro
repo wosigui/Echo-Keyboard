@@ -5,13 +5,14 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
-# disable obfuscation
--dontobfuscate
-
 # Keep JNI interface
 -keep class org.fcitx.fcitx5.android.core.* { *; }
 -keep class org.fcitx.fcitx5.android.data.pinyin.customphrase.PinyinCustomPhrase {
     public <init>(...);
+    # JNI reads these fields by name in jni-utils.h (ECHO-002).
+    java.lang.String key;
+    int order;
+    java.lang.String value;
 }
 
 # Keep dependency magic

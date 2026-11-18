@@ -1,5 +1,6 @@
 param(
     [string]$Abi = 'arm64-v8a',
+    [switch]$Release,
     [switch]$Plugins,
     [switch]$Check,
     [switch]$Install
@@ -25,9 +26,16 @@ try {
     if (Test-Path "$bundledCmake/bin/cmake.exe") {
         Add-Content "$upstream/local.properties" "`ncmake.dir=$($bundledCmake.Replace('\', '/'))"
     }
-    $tasks = @(':app:assembleDebug')
-    if ($Plugins) { $tasks += 'assembleDebugPlugins' }
-    if ($Check) { $tasks += @(':app:testDebugUnitTest', ':app:lintDebug') }
+    $variant = if ($Release) { 'Release' } else { 'Debug' }
+    if ($Release) {
+        if (!$env:SIGN_KEY_FILE -or !(Test-Path -LiteralPath $env:SIGN_KEY_FILE) -or
+            !$env:SIGN_KEY_ALIAS -or !$env:SIGN_KEY_PWD) {
+            throw 'Release requires SIGN_KEY_FILE, SIGN_KEY_ALIAS and SIGN_KEY_PWD for a signed APK'
+        }
+    }
+    $tasks = @(":app:assemble${variant}")
+    if ($Plugins) { $tasks += "assemble${variant}Plugins" }
+    if ($Check) { $tasks += @(":app:test${variant}UnitTest", ":app:lint${variant}") }
     $gradleArgs = $tasks + @('-I', "$PSScriptRoot/migration/repositories.init.gradle", "-PbuildABI=$Abi", '-PbuildTools=36.0.0', '-PcmakeVersion=3.31.6', '--console=plain')
     $gradle = './gradlew.bat'
     if (Test-Path "$PSScriptRoot/.tools/gradle/gradle-9.6.1/bin/gradle.bat") {
@@ -36,19 +44,20 @@ try {
     & $gradle @gradleArgs
     if ($LASTEXITCODE -ne 0) { throw "Gradle failed ($LASTEXITCODE)" }
     if ($Install) {
-        $apk = Get-ChildItem "$upstream/app/build/outputs/apk/debug" -Filter "*${Abi}*.apk" | Select-Object -First 1
+        $apk = Get-ChildItem "$upstream/app/build/outputs/apk/$($variant.ToLowerInvariant())" -Filter "*${Abi}*.apk" | Select-Object -First 1
         if (!$apk) { throw "No APK found for $Abi" }
         & adb install -r $apk.FullName
         if ($LASTEXITCODE -ne 0) { throw 'APK installation failed' }
         if ($Plugins) {
-            $pluginApks = Get-ChildItem "$upstream/plugin/*/build/outputs/apk/debug/*.apk" |
+            $pluginApks = Get-ChildItem "$upstream/plugin/*/build/outputs/apk/$($variant.ToLowerInvariant())/*.apk" |
                 Where-Object { $_.Name -like "*${Abi}*" -or $_.DirectoryName -like '*clipboard-filter*' }
             foreach ($pluginApk in $pluginApks) {
                 & adb install -r $pluginApk.FullName
                 if ($LASTEXITCODE -ne 0) { throw "Plugin installation failed: $($pluginApk.Name)" }
             }
         }
-        & adb shell am start -n org.fcitx.fcitx5.android.debug/org.fcitx.fcitx5.android.ui.main.MainActivity
+        $appId = if ($Release) { 'org.fcitx.fcitx5.android' } else { 'org.fcitx.fcitx5.android.debug' }
+        & adb shell am start -n "$appId/org.fcitx.fcitx5.android.ui.main.MainActivity"
         if ($LASTEXITCODE -ne 0) { throw 'Could not launch Echo' }
     }
 } finally { Pop-Location }
