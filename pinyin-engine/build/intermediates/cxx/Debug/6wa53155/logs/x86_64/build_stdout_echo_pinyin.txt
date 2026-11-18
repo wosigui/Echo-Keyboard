@@ -1,2 +1,0 @@
-ninja: Entering directory `E:\EchoContext\echo\pinyin-engine\.cxx\Debug\6wa53155\x86_64'
-ninja: no work to do.

@@ -1,0 +1,41 @@
+// Keep the upstream source pristine. This overlay applies to the main app only;
+// upstream package identities remain intact for its plugin discovery protocol.
+ext.buildCommitHash = 'eb5b50216e70484a009933d9519db76005f1faf3'
+ext.buildVersionName = 'echo-fcitx5-eb5b5021'
+['com.android.application', 'com.android.library'].each { pluginId ->
+    plugins.withId(pluginId) {
+        extensions.getByName('androidComponents').finalizeDsl { android ->
+            if (android.externalNativeBuild.cmake.path != null) {
+                def tools = rootProject.file('.tools')
+                def arguments = android.defaultConfig.externalNativeBuild.cmake.arguments
+                if (new File(tools, 'ecm/share/ECM/cmake/ECMConfig.cmake').exists()) {
+                    arguments.add("-DECM_DIR=${new File(tools, 'ecm/share/ECM/cmake').absolutePath.replace('\\', '/')}")
+                }
+                if (new File(tools, 'gettext/bin/msgfmt.exe').exists()) {
+                    arguments.add("-DCMAKE_PROGRAM_PATH=${new File(tools, 'gettext/bin').absolutePath.replace('\\', '/')}")
+                }
+            }
+        }
+    }
+}
+// Gradle 9 validates generated assets consumed by AGP's lint model tasks.
+// Reuse the upstream producer rather than disabling lint validation.
+plugins.withId('org.fcitx.fcitx5.android.data-descriptor') {
+    tasks.configureEach { task ->
+        if (task.name.toLowerCase(Locale.ROOT).contains('lint')) {
+            task.dependsOn('generateDataDescriptor')
+        }
+    }
+}
+if (project.path == ':app') {
+    plugins.withId('com.android.application') {
+        extensions.getByName('androidComponents').finalizeDsl { android ->
+            android.buildTypes.each { type ->
+                // Echo is a product name shared by all locales.
+                type.resValue('string', 'app_name', 'Echo')
+            }
+            // Explicit inherited translation debt only; new issues remain errors.
+            android.lint.baseline = rootProject.file('migration/lint-baseline.xml')
+        }
+    }
+}

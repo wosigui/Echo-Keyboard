@@ -4,14 +4,45 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/third_party/fcitx5-android/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/third_party/fcitx5-android/build-logic" />
+                  <project path="$PROJECT_DIR$/third_party/fcitx5-android/build-logic/convention" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/pinyin-engine" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/app" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/build-logic" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/build-logic/convention" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/codegen" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/common" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/fcitx5" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/fcitx5-chinese-addons" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/fcitx5-lua" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/libime" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/lib/plugin-base" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/anthy" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/chewing" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/clipboard-filter" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/hangul" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/jyutping" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/rime" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/sayura" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/thai" />
+            <option value="$PROJECT_DIR$/third_party/fcitx5-android/plugin/unikey" />
           </set>
         </option>
       </GradleProjectSettings>

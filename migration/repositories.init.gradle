@@ -1,0 +1,24 @@
+// Applied to included builds too, without changing the upstream checkout.
+settingsEvaluated { settings ->
+    settings.pluginManagement.repositories.clear()
+    settings.pluginManagement.repositories {
+        maven {
+            url = uri('https://maven.aliyun.com/repository/google')
+            content { includeGroupByRegex('com\\.android.*'); includeGroupByRegex('androidx\\..*'); includeGroupByRegex('com\\.google\\.android.*') }
+        }
+        maven { url = uri('https://maven.aliyun.com/repository/gradle-plugin') }
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+    def repositories = settings.dependencyResolutionManagement.repositories
+    repositories.clear()
+    repositories.maven {
+        url = uri('https://maven.aliyun.com/repository/google')
+        content { includeGroupByRegex('com\\.android.*'); includeGroupByRegex('androidx\\..*'); includeGroupByRegex('com\\.google\\.android.*') }
+    }
+    repositories.maven { url = uri('https://maven.aliyun.com/repository/public') }
+    repositories.google()
+    repositories.mavenCentral()
+    repositories.gradlePluginPortal()
+}
