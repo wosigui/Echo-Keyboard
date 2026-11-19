@@ -172,6 +172,7 @@ class CommonKeyActionListener :
                 }
                 is SpaceLongPressAction -> {
                     when (spaceKeyLongPressBehavior) {
+                        SpaceLongPressBehavior.VoiceInput -> org.fcitx.fcitx5.android.input.voice.VoiceInput.show(service, context)
                         SpaceLongPressBehavior.None -> {}
                         SpaceLongPressBehavior.Enumerate -> service.postFcitxJob {
                             enumerateIme()

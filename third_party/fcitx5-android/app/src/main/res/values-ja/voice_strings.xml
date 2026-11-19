@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_input">音声入力</string>
+    <string name="voice_chinese">中国語（普通話）</string>
+    <string name="voice_english">英語</string>
+    <string name="voice_permission_hint">マイクを許可し、もう一度スペースキーを長押ししてください。</string>
+    <string name="voice_download_confirm">音声モデル（約40–42 MB）をダウンロードしますか？以後はオフラインで認識し、音声は端末内で処理します。</string>
+    <string name="voice_loading">音声モデルを準備中…</string>
+    <string name="voice_listening">認識中…話し終えたら「入力」を押してください。</string>
+    <string name="voice_finish">入力</string>
+    <string name="voice_error">認識を開始できません。マイク権限、ネットワーク、空き容量を確認してください。</string>
+</resources>

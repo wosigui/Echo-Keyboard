@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_input">Голосовой ввод</string>
+    <string name="voice_chinese">Китайский (путунхуа)</string>
+    <string name="voice_english">Английский</string>
+    <string name="voice_permission_hint">Разрешите доступ к микрофону и снова удерживайте пробел.</string>
+    <string name="voice_download_confirm">Скачать модель (около 40–42 МБ)? Затем распознавание работает офлайн. Аудио остаётся на устройстве.</string>
+    <string name="voice_loading">Подготовка модели…</string>
+    <string name="voice_listening">Слушаю… По завершении нажмите «Вставить».</string>
+    <string name="voice_finish">Вставить</string>
+    <string name="voice_error">Ошибка распознавания. Проверьте разрешение микрофона, сеть и свободное место.</string>
+</resources>

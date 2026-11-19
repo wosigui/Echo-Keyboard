@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_input">Entrada de voz</string>
+    <string name="voice_chinese">Chino mandarín</string>
+    <string name="voice_english">Inglés</string>
+    <string name="voice_permission_hint">Permite el micrófono y mantén pulsada la barra espaciadora de nuevo.</string>
+    <string name="voice_download_confirm">¿Descargar el modelo (40–42 MB)? Después funciona sin conexión. El audio permanece en este dispositivo.</string>
+    <string name="voice_loading">Preparando modelo…</string>
+    <string name="voice_listening">Escuchando… Pulsa Insertar al terminar.</string>
+    <string name="voice_finish">Insertar</string>
+    <string name="voice_error">Error de reconocimiento. Comprueba el permiso del micrófono, la red y el almacenamiento.</string>
+</resources>

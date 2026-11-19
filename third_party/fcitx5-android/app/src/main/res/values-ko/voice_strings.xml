@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_input">음성 입력</string>
+    <string name="voice_chinese">중국어(표준어)</string>
+    <string name="voice_english">영어</string>
+    <string name="voice_permission_hint">마이크를 허용한 후 스페이스 키를 다시 길게 누르세요.</string>
+    <string name="voice_download_confirm">음성 모델(약 40–42 MB)을 다운로드할까요? 이후 오프라인으로 인식하며 음성은 기기에서만 처리됩니다.</string>
+    <string name="voice_loading">음성 모델 준비 중…</string>
+    <string name="voice_listening">듣는 중… 완료되면 입력을 누르세요.</string>
+    <string name="voice_finish">입력</string>
+    <string name="voice_error">인식을 시작할 수 없습니다. 마이크 권한, 네트워크 및 저장 공간을 확인하세요.</string>
+</resources>

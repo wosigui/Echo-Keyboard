@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="voice_input">语音输入</string>
+    <string name="voice_chinese">普通话</string>
+    <string name="voice_english">英语</string>
+    <string name="voice_permission_hint">请允许麦克风权限，然后再次长按空格键。</string>
+    <string name="voice_download_confirm">下载语音模型（约 40–42 MB）？之后可离线识别，录音仅在本机处理。</string>
+    <string name="voice_loading">正在准备语音模型…</string>
+    <string name="voice_listening">正在聆听…说完后点击输入。</string>
+    <string name="voice_finish">输入</string>
+    <string name="voice_error">语音识别启动失败，请检查麦克风权限、网络和存储空间后重试。</string>
+</resources>

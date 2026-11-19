@@ -1096,7 +1096,7 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
 
     private var showingDialog: Dialog? = null
 
-    fun showDialog(dialog: Dialog) {
+    fun showDialog(dialog: Dialog, onDismiss: (() -> Unit)? = null) {
         showingDialog?.dismiss()
         dialog.window?.also {
             it.attributes.apply {
@@ -1110,6 +1110,7 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
         }
         dialog.setOnDismissListener {
             showingDialog = null
+            onDismiss?.invoke()
         }
         dialog.show()
         showingDialog = dialog
