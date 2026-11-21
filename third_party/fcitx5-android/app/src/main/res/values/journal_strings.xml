@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">Your day, in words</string>
+    <string name="journal_subtitle">A little space for everything you write and copy.</string>
+    <string name="journal_settings">Settings</string>
+    <string name="journal_today">Today</string>
+    <string name="journal_recording">Record input &amp; clipboard</string>
+    <string name="journal_privacy">Stored only on this device. Passwords, private fields and sensitive clips are skipped. Clipboard settings also apply.</string>
+    <string name="journal_all">All</string>
+    <string name="journal_input">Input</string>
+    <string name="journal_clips">Clipboard</string>
+    <string name="journal_timeline">Timeline</string>
+    <string name="journal_clear">Clear day</string>
+    <string name="journal_clear_confirm">Delete this day’s records? This cannot be undone.</string>
+    <string name="journal_empty">Nothing here yet. Use Echo to type or copy text, then return to see your day.</string>
+    <string name="journal_counts">%1$d input records · %2$d clips</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">Delete</string>
+    <string name="journal_delete_confirm">Delete this record permanently?</string>
+</resources>

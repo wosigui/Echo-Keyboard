@@ -21,7 +21,6 @@ import org.vosk.Recognizer
 import org.vosk.android.RecognitionListener
 import org.vosk.android.SpeechService
 import java.io.File
-import java.net.URL
 import java.util.zip.ZipInputStream
 
 object VoiceInput {
@@ -41,11 +40,7 @@ object VoiceInput {
             .setItems(arrayOf(context.getString(R.string.voice_chinese), context.getString(R.string.voice_english))) { _, index ->
                 val name = if (index == 0) "vosk-model-small-cn-0.22" else "vosk-model-small-en-us-0.15"
                 val directory = File(service.noBackupFilesDir, "voice/$name")
-                if (File(directory, ".ready").exists()) listen(service, context, directory, index == 0)
-                else service.showDialog(AlertDialog.Builder(context).setTitle(R.string.voice_input)
-                    .setMessage(R.string.voice_download_confirm)
-                    .setPositiveButton(android.R.string.ok) { _, _ -> listen(service, context, directory, index == 0) }
-                    .setNegativeButton(android.R.string.cancel, null).create())
+                listen(service, context, directory, index == 0)
             }.setNegativeButton(android.R.string.cancel, null).create())
     }
 
@@ -85,11 +80,7 @@ object VoiceInput {
                 val loaded = withContext(Dispatchers.IO) {
                     if (!File(directory, ".ready").exists()) {
                         directory.mkdirs()
-                        val connection = URL("https://alphacephei.com/vosk/models/${directory.name}.zip").openConnection().apply {
-                            connectTimeout = 15000
-                            readTimeout = 30000
-                        }
-                        ZipInputStream(connection.getInputStream().buffered()).use { zip ->
+                        ZipInputStream(service.assets.open("voice/${directory.name}.zip").buffered()).use { zip ->
                             var total = 0L
                             while (true) {
                                 ensureActive()

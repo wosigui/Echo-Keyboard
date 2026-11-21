@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">今日の言葉を、ここに</string>
+    <string name="journal_subtitle">書いたことも、コピーしたことも。</string>
+    <string name="journal_settings">設定</string>
+    <string name="journal_today">今日</string>
+    <string name="journal_recording">入力とクリップボードを記録</string>
+    <string name="journal_privacy">この端末にのみ保存。パスワード、非公開入力、機密コピーは記録しません。クリップボード設定も適用されます。</string>
+    <string name="journal_all">すべて</string>
+    <string name="journal_input">入力</string>
+    <string name="journal_clips">コピー</string>
+    <string name="journal_timeline">タイムライン</string>
+    <string name="journal_clear">当日を消去</string>
+    <string name="journal_clear_confirm">この日の記録をすべて削除しますか？元に戻せません。</string>
+    <string name="journal_empty">まだ記録がありません。Echo で入力やコピーをしてみましょう。</string>
+    <string name="journal_counts">入力 %1$d 件 · コピー %2$d 件</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">削除</string>
+    <string name="journal_delete_confirm">この記録を完全に削除しますか？</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">把今天，留在這裡</string>
+    <string name="journal_subtitle">寫下的、複製的，都有跡可循。</string>
+    <string name="journal_settings">設定</string>
+    <string name="journal_today">今天</string>
+    <string name="journal_recording">記錄輸入與剪貼簿</string>
+    <string name="journal_privacy">僅儲存在本機。略過密碼、隱私輸入框及敏感剪貼簿；剪貼簿監聽設定同時生效。</string>
+    <string name="journal_all">全部</string>
+    <string name="journal_input">輸入</string>
+    <string name="journal_clips">剪貼簿</string>
+    <string name="journal_timeline">每日足跡</string>
+    <string name="journal_clear">清空當天</string>
+    <string name="journal_clear_confirm">刪除這一天的全部記錄？此操作無法復原。</string>
+    <string name="journal_empty">今天的故事還沒開始。用 Echo 輸入或複製文字，再回來看看。</string>
+    <string name="journal_counts">%1$d 筆輸入 · %2$d 筆剪貼簿</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">刪除</string>
+    <string name="journal_delete_confirm">永久刪除這筆記錄？</string>
+</resources>

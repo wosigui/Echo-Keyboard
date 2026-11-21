@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">오늘의 말을 모아</string>
+    <string name="journal_subtitle">입력하고 복사한 내용을 한곳에서.</string>
+    <string name="journal_settings">설정</string>
+    <string name="journal_today">오늘</string>
+    <string name="journal_recording">입력 및 클립보드 기록</string>
+    <string name="journal_privacy">이 기기에만 저장합니다. 비밀번호, 비공개 입력 및 민감한 복사는 제외합니다. 클립보드 설정도 적용됩니다.</string>
+    <string name="journal_all">전체</string>
+    <string name="journal_input">입력</string>
+    <string name="journal_clips">복사</string>
+    <string name="journal_timeline">타임라인</string>
+    <string name="journal_clear">하루 삭제</string>
+    <string name="journal_clear_confirm">이 날짜의 기록을 모두 삭제할까요? 되돌릴 수 없습니다.</string>
+    <string name="journal_empty">아직 기록이 없습니다. Echo로 입력하거나 복사한 후 돌아오세요.</string>
+    <string name="journal_counts">입력 %1$d개 · 복사 %2$d개</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">삭제</string>
+    <string name="journal_delete_confirm">이 기록을 영구 삭제할까요?</string>
+</resources>

@@ -420,6 +420,8 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
         currentInputConnection.setSelection(target, target)
     }
 
+    private var journalSession = java.util.UUID.randomUUID().toString()
+
     fun commitText(text: String, cursor: Int = -1) {
         val ic = currentInputConnection ?: return
         // when composing text equals commit content, finish composing text as-is
@@ -432,7 +434,7 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
                     selection.predict(target)
                     ic.setSelection(target, target)
                 }
-                ic.finishComposingText()
+                if (ic.finishComposingText()) org.fcitx.fcitx5.android.data.journal.JournalStore.recordInput(text, currentInputEditorInfo, journalSession)
             }
             return
         }
@@ -442,12 +444,12 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
         resetComposingState()
         if (cursor == -1) {
             selection.predict(start + text.length)
-            ic.commitText(text, 1)
+            if (ic.commitText(text, 1)) org.fcitx.fcitx5.android.data.journal.JournalStore.recordInput(text, currentInputEditorInfo, journalSession)
         } else {
             val target = start + cursor
             selection.predict(target)
             ic.withBatchEdit {
-                commitText(text, 1)
+                if (commitText(text, 1)) org.fcitx.fcitx5.android.data.journal.JournalStore.recordInput(text, currentInputEditorInfo, journalSession)
                 setSelection(target, target)
             }
         }
@@ -735,6 +737,7 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
         capabilityFlags = flags
         // EditorInfo may change between onStartInput and onStartInputView
         inputDeviceMgr.notifyOnStartInput(attribute)
+        journalSession = java.util.UUID.randomUUID().toString()
         Timber.d("onStartInput: initialSel=${selection.current}, restarting=$restarting")
         val isNullType = attribute.isTypeNull()
         // wait until InputContext created/activated
@@ -978,9 +981,10 @@ class FcitxInputMethodService : LifecycleInputMethodService() {
     fun finishComposing() {
         val ic = currentInputConnection ?: return
         if (composing.isEmpty()) return
+        val submitted = composingText.toString()
         composing.clear()
         composingText = FormattedText.Empty
-        ic.finishComposingText()
+        if (ic.finishComposingText()) org.fcitx.fcitx5.android.data.journal.JournalStore.recordInput(submitted, currentInputEditorInfo, journalSession)
     }
 
     @SuppressLint("RestrictedApi")

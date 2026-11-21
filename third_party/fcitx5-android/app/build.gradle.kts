@@ -142,3 +142,14 @@ configurations {
         exclude(group = "com.louiscad.splitties", module = "splitties-systemservices")
     }
 }
+
+// VoiceInput prepares models on demand in credential-protected no-backup storage.
+// Do not also copy the archives into the Fcitx engine's data directory.
+generateDataDescriptor {
+    excludes.addAll(
+        "voice/vosk-model-small-cn-0.22.zip",
+        "voice/vosk-model-small-en-us-0.15.zip",
+        "voice/NOTICE.txt",
+        "voice/LICENSE.txt"
+    )
+}

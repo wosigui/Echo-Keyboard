@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">Твой день в словах</string>
+    <string name="journal_subtitle">Всё, что пишешь и копируешь, в одном месте.</string>
+    <string name="journal_settings">Настройки</string>
+    <string name="journal_today">Сегодня</string>
+    <string name="journal_recording">Записывать ввод и буфер обмена</string>
+    <string name="journal_privacy">Только на этом устройстве. Пароли, приватные поля и конфиденциальные копии исключены. Настройки буфера обмена также действуют.</string>
+    <string name="journal_all">Все</string>
+    <string name="journal_input">Ввод</string>
+    <string name="journal_clips">Копии</string>
+    <string name="journal_timeline">Хронология</string>
+    <string name="journal_clear">Очистить день</string>
+    <string name="journal_clear_confirm">Удалить все записи за этот день? Отменить действие нельзя.</string>
+    <string name="journal_empty">Записей пока нет. Напишите или скопируйте текст с Echo.</string>
+    <string name="journal_counts">%1$d записей ввода · %2$d копий</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">Удалить</string>
+    <string name="journal_delete_confirm">Удалить эту запись навсегда?</string>
+</resources>

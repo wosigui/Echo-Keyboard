@@ -4,9 +4,8 @@
     <string name="voice_chinese">普通話</string>
     <string name="voice_english">英語</string>
     <string name="voice_permission_hint">請允許麥克風權限，然後再次長按空白鍵。</string>
-    <string name="voice_download_confirm">下載語音模型（約 40–42 MB）？之後可離線辨識，錄音僅在本機處理。</string>
     <string name="voice_loading">正在準備語音模型…</string>
     <string name="voice_listening">正在聆聽…說完後點擊輸入。</string>
     <string name="voice_finish">輸入</string>
-    <string name="voice_error">語音辨識啟動失敗，請檢查麥克風權限、網路及儲存空間後重試。</string>
+    <string name="voice_error">語音辨識啟動失敗，請檢查麥克風權限及儲存空間後重試。</string>
 </resources>

@@ -171,6 +171,7 @@ object ClipboardManager : ClipboardManager.OnPrimaryClipChangedListener,
             mutex.withLock {
                 val entry = ClipboardEntry.fromClipData(clip, transformer) ?: return@withLock
                 if (entry.text.isBlank()) return@withLock
+                org.fcitx.fcitx5.android.data.journal.JournalStore.recordClipboard(entry.text, entry.sensitive)
                 try {
                     clbDao.find(entry.text, entry.sensitive)?.let {
                         updateLastEntry(it.copy(timestamp = entry.timestamp))

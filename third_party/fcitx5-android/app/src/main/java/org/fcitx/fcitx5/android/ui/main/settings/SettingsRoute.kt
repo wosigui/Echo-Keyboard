@@ -46,6 +46,9 @@ sealed class SettingsRoute : Parcelable {
     @Serializable
     data object Index : SettingsRoute()
 
+    @Serializable
+    data object SettingsOverview : SettingsRoute()
+
     /* ========== Fcitx ========== */
 
     @Serializable
@@ -188,6 +191,10 @@ sealed class SettingsRoute : Parcelable {
 
             fragment<MainFragment, Index> {
                 label = ctx.getString(R.string.app_name)
+            }
+
+            fragment<org.fcitx.fcitx5.android.ui.main.SettingsOverviewFragment, SettingsOverview> {
+                label = ctx.getString(R.string.journal_settings)
             }
 
             /* ========== Fcitx ========== */

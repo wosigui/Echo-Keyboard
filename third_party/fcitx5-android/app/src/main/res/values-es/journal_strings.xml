@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">Tu día, en palabras</string>
+    <string name="journal_subtitle">Un espacio para lo que escribes y copias.</string>
+    <string name="journal_settings">Ajustes</string>
+    <string name="journal_today">Hoy</string>
+    <string name="journal_recording">Registrar entradas y portapapeles</string>
+    <string name="journal_privacy">Solo en este dispositivo. Se omiten contraseñas, campos privados y copias sensibles. También se aplican los ajustes del portapapeles.</string>
+    <string name="journal_all">Todo</string>
+    <string name="journal_input">Entradas</string>
+    <string name="journal_clips">Copias</string>
+    <string name="journal_timeline">Cronología</string>
+    <string name="journal_clear">Vaciar día</string>
+    <string name="journal_clear_confirm">¿Eliminar todos los registros de este día? No se puede deshacer.</string>
+    <string name="journal_empty">Sin registros. Escribe o copia texto con Echo y vuelve aquí.</string>
+    <string name="journal_counts">%1$d entradas · %2$d copias</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">Eliminar</string>
+    <string name="journal_delete_confirm">¿Eliminar este registro permanentemente?</string>
+</resources>

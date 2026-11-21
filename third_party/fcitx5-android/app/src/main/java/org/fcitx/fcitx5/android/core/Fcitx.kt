@@ -456,8 +456,16 @@ class Fcitx(private val context: Context) : FcitxAPI, FcitxLifecycleOwner {
                     extDomains.toTypedArray()
                 )
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                lifecycle.launchWhenReady {
+            lifecycle.launchWhenReady {
+                val prefs = context.getSharedPreferences("echo_defaults", Context.MODE_PRIVATE)
+                if (!prefs.getBoolean("pinyin_default_v1", false)) {
+                    val enabled = enabledIme().map { it.uniqueName }
+                    if (enabled.isEmpty() || enabled == listOf("keyboard-us")) {
+                        setEnabledIme(arrayOf("keyboard-us", "pinyin"))
+                    }
+                    prefs.edit().putBoolean("pinyin_default_v1", true).apply()
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                     SubtypeManager.syncWith(enabledIme())
                 }
             }

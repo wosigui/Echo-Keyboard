@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="journal_title">Dein Tag in Worten</string>
+    <string name="journal_subtitle">Ein Platz für alles, was du schreibst und kopierst.</string>
+    <string name="journal_settings">Einstellungen</string>
+    <string name="journal_today">Heute</string>
+    <string name="journal_recording">Eingaben und Zwischenablage speichern</string>
+    <string name="journal_privacy">Nur auf diesem Gerät. Passwörter, private Felder und sensible Inhalte werden übersprungen. Einstellungen der Zwischenablage gelten ebenfalls.</string>
+    <string name="journal_all">Alle</string>
+    <string name="journal_input">Eingaben</string>
+    <string name="journal_clips">Kopien</string>
+    <string name="journal_timeline">Verlauf</string>
+    <string name="journal_clear">Tag leeren</string>
+    <string name="journal_clear_confirm">Alle Einträge dieses Tages unwiderruflich löschen?</string>
+    <string name="journal_empty">Noch keine Einträge. Schreibe oder kopiere Text mit Echo.</string>
+    <string name="journal_counts">%1$d Eingaben · %2$d Kopien</string>
+    <string name="journal_entry_meta">%1$s · %2$s</string>
+    <string name="journal_delete">Löschen</string>
+    <string name="journal_delete_confirm">Diesen Eintrag endgültig löschen?</string>
+</resources>
